@@ -1,0 +1,32 @@
+<form action = '/reg-number' method= 'post'>
+    
+    <input type="text" name="regNum">
+    <input type="submit" name="submitReg">
+    
+    
+    <form action = '/reg-number/filter' method= 'post'>
+    <hr>
+        <input type = "radio" name = "area" value="cpt"> Cape Town
+        <input type = "radio" name = "area" value="gra"> Grabouw
+        <input type = "radio" name = "area" value="bel"> Bellville
+    <hr>
+    
+    <input type="submit" name="filterBtn">
+    </form>
+    
+    
+    <ul>
+            {{#num}}
+        <li>
+                {{this}}
+        </li>
+            {{/num}}
+        
+        {{#plt}}
+        <li>
+                {{this}}
+        </li>
+            {{/plt}}
+    </ul>
+    
+</form>
