@@ -12,5 +12,9 @@
     "body-parser": "^1.17.1",
     "express": "^4.15.2",
     "express-handlebars": "^3.0.0"
+  },
+    "repository": {
+    "type": "git",
+    "url": "https://github.com/LiwaDladloti/reg_webapp.git"
   }
 }
