@@ -8,11 +8,11 @@ app.use(body_parser.urlencoded({ extended: false}));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
 
-app.listen(8080, function () {
+app.listen(process.env.PORT || 8080, function () {
 	console.log('Server running on port 8080');
 });
 
-app.get('/reg-number', function(req, res) {
+app.get('/', function(req, res) {
     res.render('index');
 });
 
