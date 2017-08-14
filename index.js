@@ -37,7 +37,7 @@ function fltPlate(twn, cb) {
     });
 }
 
-app.post('/reg-number', function(req, res) {    
+app.post('/', function(req, res) {    
     var reg = req.body.regNum;
     var addReg = req.body.submitReg;
     var filter = req.body.filterBtn;
