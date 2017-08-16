@@ -64,7 +64,7 @@ app.post('/', function(req, res) {
     }
     
     var newReg = new regModel ({
-        plate: storeReg
+        plate: reg
     });
     newReg.save(function(err){
         if (err) {
