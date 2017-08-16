@@ -1,12 +1,27 @@
 var express = require('express');
 var body_parser = require('body-parser');
 var exphbs = require('express-handlebars');
+var mongoose = require('mongoose');
 var app = express();
 
 app.use(express.static('public'));
 app.use(body_parser.urlencoded({ extended: false}));
 app.engine('handlebars', exphbs({defaultLayout: 'main'}));
 app.set('view engine', 'handlebars');
+
+const mongoURL = process.env.MONGO_DB_URL || "mongodb://reg:reg@ds059306.mlab.com:59306/reg_plates";
+mongoose.connect(mongoURL);
+
+var db = mongoose.connection;
+db.on('error', console.error.bind(console, 'connection error:'));
+db.once('open', function() {
+console.log('We are connected');
+});
+
+var testSchema = mongoose.Schema({
+    plate: String
+});
+var regModel = mongoose.model('regModel', testSchema);
 
 app.listen(process.env.PORT || 8080, function () {
 	console.log('Server running on port 8080');
@@ -47,6 +62,15 @@ app.post('/', function(req, res) {
         storeReg.push(reg);
         res.render('index', {num: storeReg});
     }
+    
+    var newReg = new regModel ({
+        plate: storeReg
+    });
+    newReg.save(function(err){
+        if (err) {
+            console.log(err);
+        }
+    });
     
     if (filter) {
 //        filteredPlt = [];
